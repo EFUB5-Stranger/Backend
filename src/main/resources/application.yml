@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: livin
+    
+  datasource:
+    url: jdbc:mysql://${RDS_IP}:3306/efublivin?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: INFO
