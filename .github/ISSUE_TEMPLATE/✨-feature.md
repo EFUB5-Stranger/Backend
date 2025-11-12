@@ -1,10 +1,10 @@
-<---
+<!--
 name: "✨ Feature"
 about: '새로운 기능 추가 '
 title: '[FEAT]'
 labels: 'feat'
 assignees: ''
---->
+-->
 
 ## #️⃣ 요청 유형
 
