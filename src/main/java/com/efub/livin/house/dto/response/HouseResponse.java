@@ -17,6 +17,7 @@ public class HouseResponse {
     private Boolean parking;
     private HouseType type;
     private String options;
+    private String imageUrl;
 
     public static HouseResponse from(House house){
         HouseResponse response = new HouseResponse();
@@ -26,6 +27,7 @@ public class HouseResponse {
         response.type = house.getType();
         response.parking = house.getParking();
         response.options = house.getOptions();
+        response.imageUrl = house.getImageUrl();
         return response;
     }
 }

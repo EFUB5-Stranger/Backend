@@ -24,6 +24,7 @@ public class House {
     private Integer floor;
     private Boolean parking;
     private String options;
+    private String imageUrl;
     // 가격대
 
     @Enumerated(EnumType.STRING)
@@ -35,7 +36,7 @@ public class House {
     // 리뷰 관계 코드
 
     // Document dto -> House 엔티티로 변환
-    public static House from(Document dto, HouseType type){
+    public static House from(Document dto, HouseType type, String imageUrl){
         House house = new House();
         house.buildingName = dto.getPlace_name();
         house.address = dto.getAddress_name();
@@ -44,10 +45,11 @@ public class House {
         house.lon = Float.parseFloat(dto.getY());
         house.docId = dto.getId();
         house.type = type;
+        house.imageUrl = imageUrl;
         return house;
     }
 
-    //
+    // 새 자취/하숙 데이터 저장용
     public static House create(HouseCreateRequest request){
         House house = new House();
         house.type = request.getType();

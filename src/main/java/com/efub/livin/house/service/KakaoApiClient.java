@@ -1,6 +1,6 @@
 package com.efub.livin.house.service;
 
-import com.efub.livin.house.dto.KakaoResponseDto;
+import com.efub.livin.house.dto.response.KakaoResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
