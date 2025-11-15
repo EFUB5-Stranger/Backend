@@ -1,6 +1,7 @@
 package com.efub.livin.house.service;
 
 import com.efub.livin.house.dto.response.NaverImageResponseDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class NaverApiClient {
     private final RestTemplate restTemplate = new RestTemplate();
@@ -49,7 +51,8 @@ public class NaverApiClient {
             return response.getBody();
 
         } catch (Exception e) {
-            System.err.println("Naver API 호출 오류: " + e.getMessage());
+            log.error("Naver API 호출 오류 (query: {}): {}. 이미지를 null로 저장합니다.",
+                    query, e.getMessage());
             return null; // 오류 발생 시 null 반환
         }
     }

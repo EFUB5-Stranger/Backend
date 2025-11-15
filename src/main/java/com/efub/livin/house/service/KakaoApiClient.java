@@ -1,6 +1,9 @@
 package com.efub.livin.house.service;
 
+import com.efub.livin.global.exception.CustomException;
+import com.efub.livin.global.exception.ErrorCode;
 import com.efub.livin.house.dto.response.KakaoResponseDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class KakaoApiClient {
 
@@ -79,11 +83,15 @@ public class KakaoApiClient {
                     KakaoResponseDto.class,
                     params
             );
+
+            if (response.getBody() == null) {
+                throw new CustomException(ErrorCode.KAKAO_API_EMPTY_RESPONSE);
+            }
             return response.getBody();
 
         } catch (Exception e) {
-            System.err.println("Kakao 주소 검색 API 호출 오류: " + e.getMessage());
-            return null;
+            log.error("Kakao 주소 검색 API 호출 오류: {}", e.getMessage());
+            throw new CustomException(ErrorCode.KAKAO_API_ERROR);
         }
     }
 }
